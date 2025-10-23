@@ -22,6 +22,7 @@ const authenticateUser = require("./middleware/authentication");
 // routes
 const authRouter = require("./routes/auth");
 const appointmentsRouter = require("./routes/appointments");
+const userRouter = require("./routes/user");
 
 // error handler
 const notFoundMiddleware = require("./middleware/not-found");
@@ -49,6 +50,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 // routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/appointments", authenticateUser, appointmentsRouter);
+app.use("/api/v1/users", authenticateUser, userRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
