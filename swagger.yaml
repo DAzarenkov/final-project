@@ -1,0 +1,1801 @@
+openapi: 3.0.0
+info:
+  title: Appointment API
+  version: 1.0.0
+  description: ''
+servers:
+  - url: https://appointment-api-0vs2.onrender.com/api/v1
+paths:
+  /auth/register:
+    parameters: []
+    post:
+      summary: Register a new user
+      tags: &ref_0
+        - Auth
+      parameters: []
+      security: []
+      responses:
+        '201':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '96'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 16:50:46 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759424563'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '239'
+            ETag:
+              schema:
+                type: string
+              example: W/"ef-j/cGbqtL4/lExI6GotQPfYBoq0Y"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: User registered successfully
+        '400':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '97'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 16:49:55 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759424563'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '30'
+            ETag:
+              schema:
+                type: string
+              example: W/"1e-NYHVY/FCAStO6Wz6s+dtkk9QNNY"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: utc-millisec
+            example:
+              name: John Doe
+              email: john@gmail.com
+              password: '12345678'
+  /auth/login:
+    parameters: []
+    post:
+      summary: Login user
+      tags: *ref_0
+      parameters:
+        - name: x-api-key
+          in: header
+          required: false
+          example: supersecretkey
+          schema:
+            deprecated: false
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            deprecated: false
+      security: []
+      responses:
+        '200':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                deprecated: false
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                deprecated: false
+              example: '96'
+            Date:
+              schema:
+                deprecated: false
+              example: Thu, 02 Oct 2025 16:01:52 GMT
+            X-RateLimit-Reset:
+              schema:
+                deprecated: false
+              example: '1759421259'
+            Content-Security-Policy:
+              schema:
+                deprecated: false
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                deprecated: false
+              example: 'off'
+            Expect-CT:
+              schema:
+                deprecated: false
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                deprecated: false
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                deprecated: false
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                deprecated: false
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                deprecated: false
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                deprecated: false
+              example: none
+            Referrer-Policy:
+              schema:
+                deprecated: false
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                deprecated: false
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                deprecated: false
+              example: '*'
+            Content-Type:
+              schema:
+                deprecated: false
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                deprecated: false
+              example: '234'
+            ETag:
+              schema:
+                deprecated: false
+              example: W/"ea-G0UV4DihEanFnHsydG7ao9IRG4g"
+            Connection:
+              schema:
+                deprecated: false
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                deprecated: false
+              example: timeout=5
+          description: User logged in successfully
+        '400':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '98'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 16:48:32 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759424563'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '43'
+            ETag:
+              schema:
+                type: string
+              example: W/"2b-nrKmV32JT8PzWiAxaghaoCK/CjQ"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Bad request
+        '401':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '99'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 16:47:42 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759424563'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '29'
+            ETag:
+              schema:
+                type: string
+              example: W/"1d-Q5P8lRTDDYKgGykHBLr+xy+H20w"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Invalid credentials
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            example:
+              email: Dm@gmail.com
+              password: '12345678'
+  
+  /appointments/:
+    parameters: []
+    get:
+      summary: Get all appointments for current user
+      tags: &ref_1
+        - Appointments
+      parameters: []
+      responses:
+        '200':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '95'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:39:16 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '575'
+            ETag:
+              schema:
+                type: string
+              example: W/"23f-ip6cZVPTFlstequfoTfapY0s5gI"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: List of appointments
+        '401':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '94'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:46:57 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '32'
+            ETag:
+              schema:
+                type: string
+              example: W/"20-QOL5I1DYbzrDSFhEg744ReHu8Vk"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Unauthorized
+  /appointments:
+    parameters: []
+    post:
+      summary: Create a new appointment
+      tags: *ref_1
+      parameters: []
+      responses:
+        '201':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                deprecated: false
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                deprecated: false
+              example: '93'
+            Date:
+              schema:
+                deprecated: false
+              example: Thu, 02 Oct 2025 15:33:03 GMT
+            X-RateLimit-Reset:
+              schema:
+                deprecated: false
+              example: '1759419187'
+            Content-Security-Policy:
+              schema:
+                deprecated: false
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                deprecated: false
+              example: 'off'
+            Expect-CT:
+              schema:
+                deprecated: false
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                deprecated: false
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                deprecated: false
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                deprecated: false
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                deprecated: false
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                deprecated: false
+              example: none
+            Referrer-Policy:
+              schema:
+                deprecated: false
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                deprecated: false
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                deprecated: false
+              example: '*'
+            Content-Type:
+              schema:
+                deprecated: false
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                deprecated: false
+              example: '286'
+            ETag:
+              schema:
+                deprecated: false
+              example: W/"11e-UpJNPHN5J6JxovycPCg4oyeLDTo"
+            Connection:
+              schema:
+                deprecated: false
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                deprecated: false
+              example: timeout=5
+          description: Appointment created successfully
+        '400':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '99'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:33:59 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '87'
+            ETag:
+              schema:
+                type: string
+              example: W/"57-7Aif2ZBLbaJ1ZSaeDSEooh2+qx4"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Bad request
+        '401':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '91'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:48:37 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '32'
+            ETag:
+              schema:
+                type: string
+              example: W/"20-QOL5I1DYbzrDSFhEg744ReHu8Vk"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+            example:
+              date: '2025-10-27 09:00:00'
+              doctor: 68d0bebcfaa94c1b406a5da1
+              patient: 68d0abdcc926d2337cf9ba5c
+              reason: High fever
+
+  /appointments/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: Appointment ID
+    get:
+      summary: Get appointment by ID
+      tags: *ref_1
+      parameters: []
+      responses:
+        '200':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '98'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:36:45 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '291'
+            ETag:
+              schema:
+                type: string
+              example: W/"123-G0SksZh8x7jMQHYNR9P5DYshQ9o"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Appointment found
+        '401':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '92'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:48:21 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '32'
+            ETag:
+              schema:
+                type: string
+              example: W/"20-QOL5I1DYbzrDSFhEg744ReHu8Vk"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Unauthorized
+        '404':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '97'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:37:29 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '60'
+            ETag:
+              schema:
+                type: string
+              example: W/"3c-xT9z33MNPMgC5JwN2z2hYHypkuo"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Appointment not found
+    patch:
+      summary: Update appointment by ID
+      tags: *ref_1
+      parameters: []
+      responses:
+        '200':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '94'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 16:52:09 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759424563'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '291'
+            ETag:
+              schema:
+                type: string
+              example: W/"123-YDnE11lIXJj28iq4zZyjXe4iVfQ"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Appointment updated successfully
+        '401':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '99'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:52:38 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759421259'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '32'
+            ETag:
+              schema:
+                type: string
+              example: W/"20-QOL5I1DYbzrDSFhEg744ReHu8Vk"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Unauthorized
+        '404':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '97'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 16:09:31 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759422214'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '57'
+            ETag:
+              schema:
+                type: string
+              example: W/"39-I2TAKNklQqSVGou0S9/qb/n03cY"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Appointment not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+            example:
+              status: completed
+    delete:
+      summary: Delete appointment by ID
+      tags: *ref_1
+      parameters: []
+      responses:
+        '200':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '97'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 17:03:34 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759425488'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+            Content-Length:
+              schema:
+                type: integer
+              example: '0'
+          description: Appointment deleted successfully
+        '401':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '90'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 17:00:05 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759424563'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '32'
+            ETag:
+              schema:
+                type: string
+              example: W/"20-QOL5I1DYbzrDSFhEg744ReHu8Vk"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Unauthorized
+        '404':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '91'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 16:59:26 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759424563'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '60'
+            ETag:
+              schema:
+                type: string
+              example: W/"3c-xT9z33MNPMgC5JwN2z2hYHypkuo"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Appointment not found
+
+# 1) Define the security scheme type (HTTP bearer)
+components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
+
+# 2) Apply the security globally to all operations
+security:
+  - bearerAuth: [] # use the same name as above
