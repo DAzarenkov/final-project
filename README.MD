@@ -1,6 +1,12 @@
+## Medical Appointment System
+
 #### Live Demo
 
-https://appointment-api-0vs2.onrender.com/
+https://medical-appointment-system.onrender.com/
+
+#### API docs (Swagger UI)
+
+https://medical-appointment-system.onrender.com/api-docs/
 
 #### Setup
 
@@ -19,6 +25,7 @@ npm install && npm start
 
 - auth.js
 - appointments.js
+- user.js
 
 #### User Model
 
@@ -58,16 +65,3 @@ Email Validation Regex
 - cors
 - xss-clean
 - express-rate-limit
-
-Swagger UI
-
-```yaml
-/appointments/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the appointment id
-```
