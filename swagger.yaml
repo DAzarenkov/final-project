@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: ''
 servers:
-  - url: https://appointment-api-0vs2.onrender.com/api/v1
+  - url: http://localhost:3000/api/v1
 paths:
   /auth/register:
     parameters: []
@@ -1787,6 +1787,191 @@ paths:
                 type: string
               example: timeout=5
           description: Appointment not found
+
+  /users/doctors/:
+    parameters: []
+    get:
+      summary: Get all users with the doctor role
+      tags: &ref_2
+        - Users
+      parameters: []
+      responses:
+        '200':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '95'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:39:16 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '575'
+            ETag:
+              schema:
+                type: string
+              example: W/"23f-ip6cZVPTFlstequfoTfapY0s5gI"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: List of appointments
+        '401':
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              example: '100'
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              example: '94'
+            Date:
+              schema:
+                type: string
+              example: Thu, 02 Oct 2025 15:46:57 GMT
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+              example: '1759420140'
+            Content-Security-Policy:
+              schema:
+                type: string
+              example: >-
+                default-src 'self';base-uri
+                'self';block-all-mixed-content;font-src 'self' https:
+                data:;frame-ancestors 'self';img-src 'self' data:;object-src
+                'none';script-src 'self';script-src-attr 'none';style-src 'self'
+                https: 'unsafe-inline';upgrade-insecure-requests
+            X-DNS-Prefetch-Control:
+              schema:
+                type: string
+              example: 'off'
+            Expect-CT:
+              schema:
+                type: string
+              example: max-age=0
+            X-Frame-Options:
+              schema:
+                type: string
+              example: SAMEORIGIN
+            Strict-Transport-Security:
+              schema:
+                type: string
+              example: max-age=15552000; includeSubDomains
+            X-Download-Options:
+              schema:
+                type: string
+              example: noopen
+            X-Content-Type-Options:
+              schema:
+                type: string
+              example: nosniff
+            X-Permitted-Cross-Domain-Policies:
+              schema:
+                type: string
+              example: none
+            Referrer-Policy:
+              schema:
+                type: string
+              example: no-referrer
+            X-XSS-Protection:
+              schema:
+                type: integer
+              example: '0'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '32'
+            ETag:
+              schema:
+                type: string
+              example: W/"20-QOL5I1DYbzrDSFhEg744ReHu8Vk"
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Unauthorized
 
 # 1) Define the security scheme type (HTTP bearer)
 components:
