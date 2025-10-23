@@ -107,8 +107,8 @@ export const showAppointments = async () => {
           let deleteButton = `<td><button type="button" class="deleteButton" data-id=${data.appointments[i]._id}>delete</button></td>`;
           let rowHTML = `
             <td>${data.appointments[i].reason}</td>
-            <td>${data.appointments[i].doctor}</td>
-            <td>${data.appointments[i].patient}</td>
+            <td>${data.appointments[i].doctor.name}</td>
+            <td>${data.appointments[i].patient.name}</td>
             <td>${dateStr}</td>
             <td>${data.appointments[i].status}</td>
             <div>${editButton}${deleteButton}</div>`;

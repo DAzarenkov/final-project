@@ -5,7 +5,10 @@ const { NotFoundError, ForbiddenError } = require("../errors");
 const getAllAppointments = async (req, res) => {
   const appointments = await Appointment.find({
     $or: [{ patient: req.user.userId }, { doctor: req.user.userId }],
-  }).sort("date");
+  })
+    .populate("patient", "name")
+    .populate("doctor", "name")
+    .sort("date");
 
   res.json({ appointments, count: appointments.length });
 };
