@@ -2,11 +2,11 @@
 
 #### Live Demo
 
-https://medical-appointment-system.onrender.com/
+https://medical-appointment-system-xjju.onrender.com
 
 #### API docs (Swagger UI)
 
-https://medical-appointment-system.onrender.com/api-docs/
+https://medical-appointment-system-xjju.onrender.com/api-docs/
 
 #### Setup
 
