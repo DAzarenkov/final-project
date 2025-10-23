@@ -111,7 +111,7 @@ export const showAppointments = async () => {
             <td>${data.appointments[i].patient.name}</td>
             <td>${dateStr}</td>
             <td>${data.appointments[i].status}</td>
-            <div>${editButton}${deleteButton}</div>`;
+            ${editButton}${deleteButton}`;
 
           rowEntry.innerHTML = rowHTML;
           children.push(rowEntry);

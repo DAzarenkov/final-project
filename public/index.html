@@ -4,17 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Appointments List</title>
+    <title>Medical Appointment System</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
 
   <body>
-    <h1>Appointments List</h1>
-    <hr />
+    <h1>Medical Appointment System</h1>
+    <!-- <hr /> -->
     <p id="message"></p>
-    <hr />
+    <!-- <hr /> -->
     <div id="logon-register" style="display: none">
       <button type="button" id="logon">logon</button>
       <button type="button" id="register">register</button>
+      <div>
+        <img
+          width="640"
+          height="427"
+          src="./assets/images/main.png"
+          alt="Medical Appointment System"
+        />
+      </div>
     </div>
     <div id="logon-div" style="display: none">
       <form>
@@ -54,16 +63,18 @@
     </div>
     <div id="appointments" style="display: none">
       <p id="appointments-message"></p>
-      <table id="appointments-table">
-        <tr id="appointments-table-header">
-          <th>Reason</th>
-          <th>Doctor</th>
-          <th>Patient</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th colspan="2"></th>
-        </tr>
-      </table>
+      <div class="table-wrapper">
+        <table id="appointments-table">
+          <tr id="appointments-table-header">
+            <th>Reason</th>
+            <th>Doctor</th>
+            <th>Patient</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th colspan="2"></th>
+          </tr>
+        </table>
+      </div>
       <button type="button" id="add-appointment">add appointment</button>
       <button type="button" id="logoff">log off</button>
     </div>
