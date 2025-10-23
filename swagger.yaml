@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: ''
 servers:
-  - url: http://localhost:3000/api/v1
+  - url: https://medical-appointment-system-xjju.onrender.com/api/v1
 paths:
   /auth/register:
     parameters: []
