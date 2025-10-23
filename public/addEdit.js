@@ -4,7 +4,6 @@ import { showAppointments } from "./appointments.js";
 let addEditDiv = null;
 let reason = null;
 let doctor = null;
-let patient = null;
 let dateInput = null;
 let status = null;
 let addingAppointment = null;
@@ -12,7 +11,7 @@ let addingAppointment = null;
 // Convert ISO date to datetime-local input value
 function toDatetimeLocal(value) {
   const d = new Date(value);
-  const pad = (n) => String(n).padStart(2, '0');
+  const pad = (n) => String(n).padStart(2, "0");
   const yyyy = d.getFullYear();
   const mm = pad(d.getMonth() + 1);
   const dd = pad(d.getDate());
@@ -20,11 +19,46 @@ function toDatetimeLocal(value) {
   const min = pad(d.getMinutes());
   return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
 }
+
+// Fetch list of doctors
+async function loadDoctors() {
+  try {
+    const response = await fetch("/api/v1/users/doctors", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch doctors");
+    }
+
+    const data = await response.json();
+
+    doctor.innerHTML = "";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "-- select doctor --";
+    doctor.appendChild(placeholder);
+
+    data.doctors.forEach((d) => {
+      const option = document.createElement("option");
+      option.value = d._id;
+      option.textContent = d.name;
+      doctor.appendChild(option);
+    });
+  } catch (err) {
+    console.error(err);
+    message.textContent = "Failed to load doctors list.";
+  }
+}
+
 export const handleAddEdit = () => {
   addEditDiv = document.getElementById("edit-appointment");
   reason = document.getElementById("reason");
   doctor = document.getElementById("doctor");
-  patient = document.getElementById("patient");
   dateInput = document.getElementById("date");
   status = document.getElementById("status");
   addingAppointment = document.getElementById("adding-appointment");
@@ -47,8 +81,9 @@ export const handleAddEdit = () => {
         const body = {
           reason: reason.value,
           doctor: doctor.value,
-          patient: patient.value,
-          date: dateInput.value ? new Date(dateInput.value).toISOString() : null,
+          date: dateInput.value
+            ? new Date(dateInput.value).toISOString()
+            : null,
         };
         if (addingAppointment.textContent === "update") {
           body.status = status.value;
@@ -76,9 +111,8 @@ export const handleAddEdit = () => {
 
             reason.value = "";
             doctor.value = "";
-            patient.value = "";
             dateInput.value = "";
-            status.value = "scheduled";
+            status.value = "";
             showAppointments();
           } else {
             message.textContent = data.msg;
@@ -100,13 +134,17 @@ export const showAddEdit = async (appointmentId) => {
   if (!appointmentId) {
     reason.value = "";
     doctor.value = "";
-    patient.value = "";
     dateInput.value = "";
-    status.value = "scheduled";
+    status.value = "";
     addingAppointment.textContent = "add";
     // "scheduled" status (backend sets default)
-    status.disabled = true;
+    // Hide status field and label when adding
+    status.style.display = "none";
+    status.previousElementSibling.style.display = "none";
     message.textContent = "";
+
+    // Load doctors before showing the form
+    await loadDoctors();
 
     setDiv(addEditDiv);
   } else {
@@ -125,9 +163,12 @@ export const showAddEdit = async (appointmentId) => {
       if (response.status === 200) {
         const appt = data.appointment || data;
         reason.value = appt.reason || "";
+
+        // Load doctors and select current one
+        await loadDoctors();
         doctor.value = appt.doctor || "";
-        patient.value = appt.patient || "";
-        status.value = appt.status || "scheduled";
+
+        status.value = appt.status || "";
         if (appt.date) {
           try {
             dateInput.value = toDatetimeLocal(appt.date);
@@ -140,8 +181,9 @@ export const showAddEdit = async (appointmentId) => {
         addingAppointment.textContent = "update";
         message.textContent = "";
         addEditDiv.dataset.id = appointmentId;
-        // Enable status when editing
-        status.disabled = false;
+        // Show status field and label when editing
+        status.style.display = "block";
+        status.previousElementSibling.style.display = "block";
 
         setDiv(addEditDiv);
       } else {
