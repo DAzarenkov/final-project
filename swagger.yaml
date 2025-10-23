@@ -963,7 +963,6 @@ paths:
             example:
               date: '2025-10-27 09:00:00'
               doctor: 68d0bebcfaa94c1b406a5da1
-              patient: 68d0abdcc926d2337cf9ba5c
               reason: High fever
 
   /appointments/{id}:
