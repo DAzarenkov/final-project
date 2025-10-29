@@ -49,14 +49,29 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/appointments", authenticateUser, appointmentsRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
 
+app.get("/multiply", (req, res) => {
+  const result = req.query.first * req.query.second;
+  if (result.isNaN) {
+    result = "NaN";
+  } else if (result == null) {
+    result = "null";
+  }
+  res.json({ result: result });
+});
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
 
-const start = async () => {
+const start = () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    let mongoURL = process.env.MONGO_URI;
+    if (process.env.NODE_ENV == "test") {
+      mongoURL = process.env.MONGO_URI_TEST;
+    }
+    connectDB(mongoURL);
+
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
@@ -66,3 +81,5 @@ const start = async () => {
 };
 
 start();
+
+module.exports = { app };

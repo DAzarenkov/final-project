@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "test": "set NODE_ENV=test&& mocha tests/*.js --timeout 5000 --exit",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
@@ -27,6 +28,12 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.9"
+    "@faker-js/faker": "^10.1.0",
+    "chai": "^6.2.0",
+    "chai-http": "^5.1.2",
+    "factory-bot": "^6.3.1",
+    "mocha": "^11.7.4",
+    "nodemon": "^2.0.9",
+    "puppeteer": "^24.26.1"
   }
 }
